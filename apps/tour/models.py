@@ -9,6 +9,13 @@ class Advantages(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Category(BaseModel):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
     
 
 class Country(BaseModel):
@@ -26,7 +33,10 @@ class Country(BaseModel):
     continent = models.CharField(max_length=20, choices=CONTINENT_CHOICES, blank=True, null=True)
     period = models.IntegerField(null=True, blank=True, default=10)
     persons = models.IntegerField(null=True, blank=True, default=2)
-    rating = models.IntegerField(null=True, blank=True, default=0) 
+    rating = models.IntegerField(null=True, blank=True, default=0)
+    category = models.ForeignKey(Category, models.SET_NULL, blank=True, null=True)
+    cities = models.IntegerField(blank=True, null=True)
+    discount = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -66,10 +76,15 @@ class Tour(BaseModel):
     description = RichTextField(blank=True, null=True)
     price = models.DecimalField(max_digits=20, decimal_places=2)
     image = models.ImageField(upload_to='images/tours/')
-    destinations = models.ManyToManyField(
-        Destination, blank=True, related_name='tours')
-    countries = models.ManyToManyField(Country, blank=True)
+    destinations = models.ForeignKey(
+        Destination, models.SET_NULL, blank=True, null=True)
+    countries = models.ForeignKey(Country, models.SET_NULL, blank=True, null=True)
     continent = models.CharField(max_length=20, choices=CONTINENT_CHOICES, blank=True, null=True)
+    category = models.ManyToManyField('Category', blank=True)
 
     def __str__(self):
         return self.name
+
+
+class Gallery(BaseModel):
+    image = models.ImageField(upload_to='images/gallery/')

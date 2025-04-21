@@ -100,10 +100,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="index.html" class="nav-item nav-link active">Bosh sahifa</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="services.html" class="nav-item nav-link">Services</a>
-                        <a href="packages.html" class="nav-item nav-link">Packages</a>
-                        <a href="blog.html" class="nav-item nav-link">Blog</a>
+                        <a href="{%url 'tours'%}" class="nav-item nav-link">Tours</a>
+                        <a href="{%url 'destination'%}" class="nav-item nav-link">Joylar</a>
+                        <a href="{%url 'countrys'%}" class="nav-item nav-link">Davlatlar</a>
+                        <a href="{%url 'gallery'%}" class="nav-item nav-link">Galeriya</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -396,9 +396,9 @@
                                             <div class="destination-img">
                                                 <img class="img-fluid rounded w-100" src="{{i.image.url}}" alt="">
                                                 <div class="destination-overlay p-4">
-                                                    <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                                    {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                                     <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
-                                                    <a href="#" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
+                                                    <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
                                                 </div>
                                                 <div class="search-icon">
                                                     <a href="{{i.image}}" data-lightbox="destination-1"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -416,7 +416,7 @@
                                         <div class="destination-overlay p-4">
                                             <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
                                             <h4 class="text-white mb-2 mt-3">{{j.name}}</h4>
-                                            <a href="#" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination' %}" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{j.image}}" data-lightbox="destination-4"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -433,9 +433,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3"{{i.name}}></h4>
-                                            <a href="#" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -453,9 +453,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
-                                            <a href="#" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -473,9 +473,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
-                                            <a href="#" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -492,9 +492,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
-                                            <a href="#" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -511,9 +511,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
-                                            <a href="#" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
@@ -561,7 +561,7 @@
                                         <div class="national-content">
                                             <div class="national-info">
                                                 <h5 class="text-white text-uppercase mb-2">Weekend Tour</h5>
-                                                <a href="#" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
+                                                <a href="{%url 'tours'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                             </div>
                                         </div>
                                         <div class="national-plus-icon">
@@ -581,11 +581,11 @@
                                     <div class="international-content">
                                         <div class="international-info">
                                             <h5 class="text-white text-uppercase mb-2">{{ i.name }}</h5>
-                                            <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 8 Cities</a>
-                                            <a href="#" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>143+ Tour Places</span></a>
+                                            {% comment %} <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 8 Cities</a> {% endcomment %}
+                                            <a href="{%url 'tours'%}" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>Ko'rish</span></a>
                                         </div>
                                     </div>
-                                    <div class="tour-offer bg-success">30% Off</div>
+                                    {% comment %} <div class="tour-offer bg-success">30% Off</div> {% endcomment %}
                                     <div class="international-plus-icon">
                                         <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
                                     </div>
@@ -633,10 +633,10 @@
                             </div>
                             <div class="row bg-primary rounded-bottom mx-0">
                                 <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Barchasini ko'rish</a>
+                                    <a href="{%url 'countrys'%}" class="btn-hover btn text-white py-2 px-4">Barchasini ko'rish</a>
                                 </div>
                                 <div class="col-6 text-end px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Ariza berish</a>
+                                    <a href="{%url 'country_destination' i.id%}" class="btn-hover btn text-white py-2 px-4">Shaharlar</a>
                                 </div>
                             </div>
                         </div>
@@ -647,7 +647,7 @@
         </div>
         <!-- Packages End -->
 
-        <!-- Gallery Start -->
+        {% comment %} <!-- Gallery Start -->
         <div class="container-fluid gallery py-5 my-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                 <h5 class="section-title px-3">Our Gallery</h5>
@@ -959,9 +959,9 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery End -->
+        <!-- Gallery End --> {% endcomment %}
 
-        <!-- Tour Booking Start -->
+        {% comment %} <!-- Tour Booking Start -->
         <div class="container-fluid booking py-5">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
@@ -1043,9 +1043,9 @@
                 </div>
             </div>
         </div>
-        <!-- Tour Booking End -->
+        <!-- Tour Booking End --> {% endcomment %}
 
-        <!-- Travel Guide Start -->
+        {% comment %} <!-- Travel Guide Start -->
         <div class="container-fluid guide py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -1140,9 +1140,9 @@
                 </div>
             </div>
         </div>
-        <!-- Travel Guide End -->
+        <!-- Travel Guide End --> {% endcomment %}
 
-        <!-- Blog Start -->
+        {% comment %} <!-- Blog Start -->
         <div class="container-fluid blog py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -1224,9 +1224,9 @@
                 </div>
             </div>
         </div>
-        <!-- Blog End -->
+        <!-- Blog End --> {% endcomment %}
 
-        <!-- Testimonial Start -->
+        {% comment %} <!-- Testimonial Start -->
         <div class="container-fluid testimonial py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -1317,9 +1317,9 @@
                 </div>
             </div>
         </div>
-        <!-- Testimonial End -->
+        <!-- Testimonial End --> {% endcomment %}
 
-        <!-- Subscribe Start -->
+        {% comment %} <!-- Subscribe Start -->
         <div class="container-fluid subscribe py-5">
             <div class="container text-center py-5">
                 <div class="mx-auto text-center" style="max-width: 900px;">
@@ -1334,7 +1334,7 @@
                 </div>
             </div>
         </div>
-        <!-- Subscribe End -->
+        <!-- Subscribe End --> {% endcomment %}
 
         <!-- Footer Start -->
         <div class="container-fluid footer py-5">
