@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'ckeditor' ,
     'apps.main' ,
     'apps.tour' ,
+    'apps.accounts' ,
+    'apps.order' , 
 ]
 
 MIDDLEWARE = [

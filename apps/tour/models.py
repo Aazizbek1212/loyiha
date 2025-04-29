@@ -88,3 +88,13 @@ class Tour(BaseModel):
 
 class Gallery(BaseModel):
     image = models.ImageField(upload_to='images/gallery/')
+
+
+class Comment(BaseModel):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    message = models.TextField()
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='comments')
+    
+    def __str__(self):
+        return self.name
