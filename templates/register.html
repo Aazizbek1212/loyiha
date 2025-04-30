@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Ro'yxatdan O'tish</title>
+    <link rel="stylesheet" href="{% static './style.css' %}">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+</head>
+<body>
+    <div class="main-w3layouts wrapper">
+        <h1>Ro'yxatdan O'tish</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="field">
+                        <label for="username">Foydalanuvchi nomi:</label>
+                        <input type="text" id="username" name="username" class="text" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="text email" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="password">Parol:</label>
+                        <input type="password" id="password" name="password" class="text" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="confirm_password">Parolni tasdiqlang:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" class="text w3lpass" required>
+                    </div>
+
+                    <div class="wthree-text">
+                        <label class="anim">
+                            <input type="checkbox" class="checkbox" required="">
+                            <span>Shartlar va shartlarga roziman</span>
+                        </label>
+                        <div class="clear"> </div>
+                    </div>
+
+                    <input type="submit" value="RO'YXATDAN O'TISH">
+                </form>
+                <p>Hisobingiz yo'qmi? <a href="{% url 'login' %}"> Hozir kiring!</a></p>
+            </div>
+        </div>
+
+        <div class="colorlibcopy-agile">
+            <p>© 2018 Colorlib Signup Form. All rights reserved | Design by <a href="https://colorlib.com/" target="_blank">Colorlib</a></p>
+        </div>
+
+        <ul class="colorlib-bubbles">
+            <li></li><li></li><li></li><li></li><li></li>
+            <li></li><li></li><li></li><li></li><li></li>
+        </ul>
+    </div>
+
+    <style>
+        .field {
+            margin-bottom: 15px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .text, .email, .w3lpass {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+    </style>
+</body>
+</html>

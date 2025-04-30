@@ -28,6 +28,172 @@
 
         <!-- Template Stylesheet -->
         <link href="{% static 'css/style.css'%}" rel="stylesheet">
+        <style>
+            /* Umumiy modal stillari */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0,0,0,0.4);
+            }
+        
+            .modal-content {
+                background-color: #fefefe;
+                margin: 10% auto; /* Yuqoridan biroz pastroqda joylashsin */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 300px; /* Kichikroq karta uchun eni */
+                border-radius: 10px;
+                position: relative;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        
+            .close-button {
+                color: #aaa;
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        
+            .close-button:hover,
+            .close-button:focus {
+                color: black;
+                text-decoration: none;
+            }
+        
+            /* Profil karta stillari */
+            .profile-card {
+                text-align: center;
+            }
+        
+            .profile-header {
+                padding-bottom: 15px;
+                border-bottom: 1px solid #eee;
+                margin-bottom: 15px;
+            }
+        
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-color: #ddd;
+                margin: 0 auto 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        
+            .profile-avatar i {
+                color: #666;
+                font-size: 2.5em;
+            }
+        
+            .profile-name {
+                font-size: 1.5em;
+                margin-bottom: 5px;
+                color: #333;
+            }
+        
+            .profile-status {
+                color: #5cb85c;
+                font-size: 0.9em;
+            }
+        
+            .profile-status i {
+                margin-right: 5px;
+            }
+        
+            .profile-details {
+                padding: 15px 0;
+            }
+        
+            .detail-item {
+                padding: 8px 0;
+                border-bottom: 1px dotted #eee;
+            }
+        
+            .detail-item:last-child {
+                border-bottom: none;
+            }
+        
+            .detail-label {
+                font-weight: bold;
+                color: #555;
+            }
+        
+            .detail-value {
+                color: #777;
+            }
+        
+            .profile-actions {
+                margin-top: 20px;
+            }
+        
+            .action-button {
+                background-color: #ffc107; /* Sariq rang */
+                color: #333;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 0.9em;
+                transition: background-color 0.3s ease;
+            }
+        
+            .action-button:hover {
+                background-color: #e0a800;
+            }
+        
+            /* Tahrirlash formasi stillari */
+            .edit-form {
+                text-align: left;
+            }
+        
+            .edit-form label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #333;
+            }
+        
+            .edit-form input[type="number"],
+            .edit-form input[type="text"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+        
+            .edit-form button {
+                background-color: #28a745;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 15px;
+                cursor: pointer;
+                font-size: 0.9em;
+                transition: background-color 0.3s ease;
+            }
+        
+            .edit-form button:hover {
+                background-color: #1e7e34;
+            }
+            .profile-email {
+                font-size: 0.9em;
+                color: #777;
+                margin-bottom: 10px;
+            }
+        </style>
     </head>
 
     <body>
@@ -54,17 +220,16 @@
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a>
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                        {% if not user.is_authenticated %}
+                        <a href="{%url 'register'%}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Ro'yxatdan o'tish</small></a>
+                        <a href="{%url 'login'%}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Kirish</small></a>
+                        {%endif%}
                         <div class="dropdown">
-                            <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
+                            <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i>Uy</small></a>
                             <div class="dropdown-menu rounded">
-                                <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
-                            </div>
+                                <a href="#" class="dropdown-item" id="showProfileModal"><i class="fas fa-user-alt me-2"></i>Mening profilim</a>
+                                <a href="{%url 'logout'%}" class="dropdown-item"><i class="fas fa-power-off me-2"></i>Chiqish</a>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -76,7 +241,7 @@
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Travela</h1>
+                    <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Dunyo Tour</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -85,20 +250,22 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="{%url 'home'%}" class="nav-item nav-link">Bosh sahifa</a>
-                        <a href="{%url 'tours'%}" class="nav-item nav-link">Turlar</a>
+                        <a href="{%url 'tours'%}" class="nav-item nav-link active">Ekskursiyalar</a>
                         <a href="{%url 'destination'%}" class="nav-item nav-link">Shaharlar</a>
                         <a href="{%url 'countrys'%}" class="nav-item nav-link">Davlatlar</a>
-                        <a href="blog.html" class="nav-item nav-link">Blog</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="{%url 'gallery'%}" class="nav-item nav-link">Galeriya</a>
+                        <a href="contact.html" class="nav-item nav-link">Bog'lanish</a>
                     </div>
-                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
+                    {%if user.is_authenticated%}
+                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">{{user.username}}</a>
+                    {%endif%}
                 </div>
             </nav>
         </div>
         <!-- Navbar & Hero End -->
 
         <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
+        <div class="container-fluid bg-breadcrumb" style="background-image: url('{% static "img/packages-3.jpg" %}'); background-size: cover; background-repeat: no-repeat;">
             <div class="container text-center py-5" style="max-width: 900px;">
                 <h3 class="text-white display-3 mb-4">Turlar</h1>
                 {% comment %} <ol class="breadcrumb justify-content-center mb-0">
@@ -414,6 +581,130 @@
 
         <!-- Template Javascript -->
         <script src="{% static 'js/main.js'%}"></script>
+        <div id="profileModal" class="modal">
+            <div class="modal-content profile-card">
+                <span class="close-button">&times;</span>
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user fa-3x"></i>
+                    </div>
+                    <h3 class="profile-name">{{ user.username }}</h3>
+                    <p class="profile-email">{{ user.email }}</p>
+                    {% comment %} <span class="profile-status"><i class="fas fa-check-circle"></i> Foydalanuvchi obunaga ega</span> {% endcomment %}
+                </div>
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Telefon:</span>
+                        <span class="detail-value" id="profil_telefon_card">{% if user.userprofile.telefon_raqami %}{{ user.userprofile.telefon_raqami }}{% else %}Yo'q{% endif %}</span>
+                        <div class="detail-item">
+                            <span class="detail-label">Yosh:</span>
+                            <span class="detail-value" id="profil_yosh_card">{% if user.userprofile.yosh %}{{ user.userprofile.yosh }}{% else %}Ma'lumot yo'q{% endif %}</span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="action-button edit-button" id="editProfileBtn"><i class="fas fa-edit"></i> Tahrirlash</button>
+                        {% comment %} <button class="action-button message-button"><i class="fas fa-envelope"></i> Xabar</button>
+                        <button class="action-button settings-button"><i class="fas fa-cog"></i> Sozlamalar</button> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="editModal" class="modal">
+            <div class="modal-content edit-form">
+                <span class="close-button">&times;</span>
+                <h2>Profilni tahrirlash</h2>
+                <label for="yosh_edit">Yosh:</label>
+                <input type="number" id="yosh_edit" name="yosh">
+    
+                <label for="telefon_edit">Telefon raqami:</label>
+                <input type="text" id="telefon_edit" name="telefon">
+    
+                <button type="button" id="saqlash_edit">Saqlash</button>
+            </div>
+        </div>
+    
+        <script>
+            // Modal oynalarni boshqarish uchun JavaScript
+            const profileModal = document.getElementById("profileModal");
+            const showProfileModalBtn = document.getElementById("showProfileModal");
+            const closeButtons = document.querySelectorAll(".close-button");
+            const editProfileBtn = document.getElementById("editProfileBtn");
+            const editModal = document.getElementById("editModal");
+            const saqlashEditBtn = document.getElementById("saqlash_edit");
+            const yoshEditInput = document.getElementById("yosh_edit");
+            const telefonEditInput = document.getElementById("telefon_edit");
+            const profilTelefonCard = document.getElementById("profil_telefon_card");
+    
+            showProfileModalBtn.addEventListener("click", function() {
+                profileModal.style.display = "block";
+            });
+    
+            closeButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    profileModal.style.display = "none";
+                    editModal.style.display = "none";
+                });
+            });
+    
+            window.addEventListener("click", function(event) {
+                if (event.target == profileModal || event.target == editModal) {
+                    profileModal.style.display = "none";
+                    editModal.style.display = "none";
+                }
+            });
+    
+            editProfileBtn.addEventListener("click", function() {
+                profileModal.style.display = "none";
+                editModal.style.display = "block";
+                // Agar foydalanuvchida telefon raqami bo'lsa, tahrirlash formasiga joylash
+                if (profilTelefonCard.textContent !== "Yo'q") {
+                    telefonEditInput.value = profilTelefonCard.textContent;
+                    // Agar yosh ham bo'lsa, uni ham joylashtirish mumkin
+                    // Masalan: yoshEditInput.value = document.getElementById("profil_yosh_card").textContent;
+                }
+            });
+    
+            saqlashEditBtn.addEventListener("click", function() {
+                const yosh = yoshEditInput.value;
+                const telefon = telefonEditInput.value;
+    
+                const formData = new FormData();
+                formData.append('yosh', yosh);
+                formData.append('telefon_raqami', telefon); // Modelda telefon_raqami deb nomlangan
+    
+                fetch("{% url 'profile' %}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Muvaffaqiyat:', data);
+                    if (data.success) {
+                        if (telefon) {
+                            profilTelefonCard.textContent = telefon;
+                        }
+                        // Yoshni ham yangilash (agar profil kartada ko'rsatilgan bo'lsa)
+                        const profilYoshCard = document.getElementById("profil_yosh_card");
+                        if (profilYoshCard && yosh) {
+                            profilYoshCard.textContent = yosh;
+                        }
+                        editModal.style.display = "none";
+                        profileModal.style.display = "block";
+                    } else if (data.error) {
+                        console.error('Xatolik:', data.error);
+                        alert('Ma\'lumotlarni saqlashda xatolik yuz berdi.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Tarmoq xatoligi:', error);
+                    alert('Tarmoq xatoligi yuz berdi.');
+                });
+            });
+        </script>
     </body>
 
 </html>

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Kirish Formasi</title>
+    <link rel="stylesheet" href="{% static 'test/style.css' %}">
+</head>
+<body>
+<section class="forms-section">
+    <h1 class="section-title">Kirish Formasi</h1>
+    <div class="forms">
+        <div class="form-wrapper is-active">
+            <h2 class="form-title">Kirish</h2>
+            <form class="form form-login" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Iltimos foydalanuvchi nomi hamda parolini kiriting.</legend>
+                    <div class="input-block">
+                        <label for="login-username">Foydalanuvchi nomi</label>
+                        <input id="login-username" type="text" name="username" required>
+                    </div>
+                    <div class="input-block">
+                        <label for="login-password">Parol</label>
+                        <input id="login-password" type="password" name="password" required>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn-login">Kirish</button>
+            </form>
+        </div>
+    </div>
+</section>
+<script  src="{% static 'test/./script.js' %}"></script>
+</body>
+</html>
