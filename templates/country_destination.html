@@ -267,7 +267,7 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb" style="background-image: url('{% static "img/gallery-12.jpg" %}'); background-size: cover; background-repeat: no-repeat;">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Turlar</h1>
+                <h3 class="text-white display-3 mb-4">Shaharlar</h1>
                 {% comment %} <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="{%url 'home'%}">Bosh sahifa</a></li>
                     <li class="breadcrumb-item"><a href="#">Turlar</a></li>
@@ -280,32 +280,49 @@
         <div class="container-fluid destination py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">{{ country.name }}</h1>
+                    {% comment %} <h5 class="section-title px-3">Destination</h5> {% endcomment %}
+                    <h1 class="mb-0">
+                        {{ country.name }}
+                    </h1>
                 </div>
-                <div class="row g-4">
-                    {% for i in destination %}
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="destination-img position-relative overflow-hidden">
-                            <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="{{ i.name }} ko'rinishi" style="width: 100%; height: auto; object-fit: contain;">
-                            <div class="destination-overlay p-4 position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end align-items-start bg-dark bg-opacity-50">
-                                <h4 class="text-white mb-2">{{ i.name }}</h4>
-                                <a href="{% url 'destination_tour' i.id %}" class="btn btn-sm btn-primary rounded-pill">Ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
+                <div class="tab-class text-center">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+                        <li class="nav-item">
+                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
+                                {% comment %} <span class="text-dark" style="width: 150px;">Barchasi</span> {% endcomment %}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                {% for i in destination %}
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="destination-img">
+                                        <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
+                                        <div class="destination-overlay p-4">
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
+                                            <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
+                                            <a href="{%url 'destination_tour' i.id%}" class="btn-hover text-white">Ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
+                                        </div>
+                                        <div class="search-icon">
+                                            <a href="{{ i.image.url }}" data-lightbox="destination-1">
+                                                <i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
                             </div>
-                            <div class="search-icon position-absolute top-0 end-0 p-3">
-                                <a href="{{ i.image.url }}" data-lightbox="destination-1" class="btn btn-sm btn-light btn-sm-square rounded-circle">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
+                        </div>                       
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
         <!-- Destination End -->
 
         <!-- Subscribe Start -->
-        <div class="container-fluid subscribe py-5">
+        {% comment %} <div class="container-fluid subscribe py-5">
             <div class="container text-center py-5">
                 <div class="mx-auto text-center" style="max-width: 900px;">
                     <h5 class="subscribe-title px-3">Subscribe</h5>
@@ -318,7 +335,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- Subscribe End -->
 
         <!-- Footer Start -->
@@ -327,11 +344,11 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Get In Touch</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <h4 class="mb-4 text-white">Biz haqimiza</h4>
+                            <a href=""><i class="fas fa-home me-2"></i> O'zbekiston, Toshkent</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i>azizbekilyosov1212@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> (+998) 99- 876 54 32</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> (+998) 90- 876 54 32</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -341,7 +358,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    {% comment %} <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -403,7 +420,7 @@
                                 <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

@@ -274,6 +274,16 @@
                 </ol>     {% endcomment %}
             </div>
         </div>
+        <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
+            <div class="container">
+                <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+                    <form action="{% url 'tour_search' %}" method="GET">
+                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="search" name="qidiruv" id='search' placeholder="Misol: Aya Sofiya">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Qidiruv</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Header End -->
 
         <!-- Gallery Start -->
@@ -320,7 +330,7 @@
                 <div class="tab-content">
                     <div id="GalleryTab-1" class="tab-pane fade show p-0 active">
                         <div class="row g-2">
-                            {%for i in tour%}
+                            {%for i in turlar%}
                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
                                 <div class="gallery-item h-100">
                                     <img src="{{i.image.url}}" class="img-fluid w-100 h-100 rounded" alt="Image">
@@ -444,7 +454,7 @@
         <!-- Gallery End -->
 
         <!-- Subscribe Start -->
-        <div class="container-fluid subscribe py-5">
+        {% comment %} <div class="container-fluid subscribe py-5">
             <div class="container text-center py-5">
                 <div class="mx-auto text-center" style="max-width: 900px;">
                     <h5 class="subscribe-title px-3">Subscribe</h5>
@@ -457,7 +467,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- Subscribe End -->
 
         <!-- Footer Start -->
@@ -466,11 +476,11 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Get In Touch</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <h4 class="mb-4 text-white">Biz haqimiza</h4>
+                            <a href=""><i class="fas fa-home me-2"></i> O'zbekiston, Toshkent</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i>azizbekilyosov1212@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> (+998) 99- 876 54 32</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> (+998) 90- 876 54 32</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -480,7 +490,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    {% comment %} <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -542,7 +552,7 @@
                                 <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

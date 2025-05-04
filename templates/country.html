@@ -267,7 +267,7 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb" style="background-image: url('{% static "img/gallery-11.jpg" %}'); background-size: cover; background-repeat: no-repeat;">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Turlar</h1>
+                <h3 class="text-white display-3 mb-4">Davlatlar</h1>
                 {% comment %} <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="{%url 'home'%}">Bosh sahifa</a></li>
                     <li class="breadcrumb-item"><a href="#">Turlar</a></li>
@@ -285,44 +285,35 @@
                     <p class="mb-0">"Dunyoni sayohat qilish — bu har bir qadamda yangi madaniyatlarni kashf qilish, har bir manzilda o'zingizni yangidan topish va hayotga boshqacha nigoh bilan qarashdir. Chunki sayohat inson qalbini boyitadi, xotiralarni chiroyli lahzalarga aylantiradi va har bir burchakda hayotning mo'jizalarini ko'rsatadi."
                     </p>
                 </div>
-                <div class="row g-4">
-                    {% for i in country %}
+                <h2>Qidiruv natijasi soni: {{ davlatlar|length }}</h2>
+                <div class="row g-4 mt-4">
+                    {% for davlat in davlatlar %}
                     <div class="col-md-6 col-lg-4 d-flex">
-                        <div class="card border-0 shadow-sm w-100 h-100 overflow-hidden position-relative           rounded-4">
-                
-                            <!-- Rasm -->
-                            <img src="{{ i.image.url }}"
-                                 class="card-img-top w-100"
-                                 style="height: 250px; object-fit: cover;"
-                                 alt="{{ i.name }}">
-                
-                            <!-- Chegirma belgisi -->
-                            {% if i.discount %}
+                        <div class="card border-0 shadow-sm w-100 h-100 overflow-hidden position-relative rounded-4">
+                            {% if davlat.image %}
+                            <img src="{{ davlat.image.url }}" class="card-img-top w-100" style="height: 250px; object-fit: cover;" alt="{{ davlat.name }}">
+                            {% endif %}
+                            {% if davlat.discount %}
                             <div class="position-absolute top-0 start-0 bg-success text-white fw-semibold px-3 py-1 rounded-end-bottom" style="font-size: 0.9rem;">
-                                -{{ i.discount }}%
+                                -{{ davlat.discount }}%
                             </div>
                             {% endif %}
-                
-                            <!-- Kontent -->
-                            <div class="card-body text-center position-absolute bottom-0 w-100 text-white pb-4"
-                                style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
-
-                                <a href="{%url 'country_destination' i.id%}"><h5 class="fw-bold mb-2 text-uppercase text-white">{{ i.name }}</h5></a>
-
+                            <div class="card-body text-center position-absolute bottom-0 w-100 text-white pb-4" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+                                <a href="{%url 'country_destination' davlat.id%}"><h5 class="fw-bold mb-2 text-uppercase text-white">{{ davlat.name }}</h5></a>
                                 <div class="d-flex justify-content-center gap-4 small">
                                     <span class="d-flex align-items-center">
-                                        <i class="fas fa-map-marker-alt me-1"></i>{{ i.cities }} Shahar
+                                        <i class="fas fa-map-marker-alt me-1"></i>{{ davlat.cities }} Shahar
                                     </span>
                                     <span class="d-flex align-items-center">
-                                        <i class="fa fa-user me-1"></i>{{ i.persons }} Odam
+                                        <i class="fa fa-user me-1"></i>{{ davlat.persons }} Odam
                                     </span>
                                 </div>
                             </div>
-
-                            
-
-                
                         </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <p>Davlatlar topilmadi.</p>
                     </div>
                     {% endfor %}
                 </div>
@@ -331,7 +322,7 @@
         <!-- Explore Tour Start -->
 
         <!-- Subscribe Start -->
-        <div class="container-fluid subscribe py-5">
+        {% comment %} <div class="container-fluid subscribe py-5">
             <div class="container text-center py-5">
                 <div class="mx-auto text-center" style="max-width: 900px;">
                     <h5 class="subscribe-title px-3">Subscribe</h5>
@@ -344,7 +335,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- Subscribe End -->
 
         <!-- Footer Start -->
@@ -353,11 +344,11 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Get In Touch</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <h4 class="mb-4 text-white">Biz haqimiza</h4>
+                            <a href=""><i class="fas fa-home me-2"></i> O'zbekiston, Toshkent</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i>azizbekilyosov1212@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> (+998) 99- 876 54 32</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> (+998) 90- 876 54 32</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -367,7 +358,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    {% comment %} <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -429,7 +420,7 @@
                                 <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

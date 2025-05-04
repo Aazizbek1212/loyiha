@@ -296,7 +296,7 @@
                                         —                Avliyo Avgustin 
                                     </p>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Boshlash</a>
+                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{%url 'countrys'%}">Boshlash</a>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
                                     <p class="mb-5 fs-5">"Dunyo o'tib ketdi, lekin har bir o'tgan kunning o'ziga xos o'rni bor. Biz bilan o'tgan vaqt asosiysi emas, balki o'sha vaqtni qanday o'tkazganimiz, qanday izlar qoldirganimizdir. Dunyo o'tadi, lekin ba'zi voqealar, insonlar va joylar abadiy qalbimizda iz qoldiradi." 
                                     </p>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Boshlash</a>
+                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{%url 'countrys'%}">Boshlash</a>
                                     </div>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@
                                     <p class="mb-5 fs-5">"Madaniyatlar o'rtasidagi farqlar bizni ajratmaydi, aksincha, bizni kuchaytiradi. Har bir xalqning san'ati, musiqa va urf-odatlari insoniyatning boyligi va o'zaro hurmatning namunalaridir." 
                                     </p>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="#">Boshlash</a>
+                                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5" href="{%url 'countrys'%}">Boshlash</a>
                                     </div>
                                 </div>
                             </div>
@@ -345,8 +345,10 @@
         <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
             <div class="container">
                 <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
-                    <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Tailand">
-                    <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Qidiruv</button>
+                    <form action="{% url 'country_search' %}" method="GET">
+                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="search" name="qidiruv" id='search' placeholder="Misol: Tailand">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Qidiruv</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -358,10 +360,10 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
                         <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                            <img src="{% static 'img\jeshoots-com-mSESwdMZr-A-unsplash.jpg' %}" class="img-fluid w-100 h-100" alt="">
+                            <img src="{% static 'img/guide-3.jpg' %}" class="img-fluid w-100 h-100" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/guide-3.jpg);">
                         <h5 class="section-about-title pe-3">Biz haqimizda</h5>
                         <h1 class="mb-4">Xush kelibsiz <span class="text-primary">Sayohat agentligimizga</span></h1>
                         <p class="mb-4">Dunyo Tour - bu nafaqat sayohat tashkilotchisi, balki sizning ishonchli yo'ldoshingiz! Biz dunyoning istalgan nuqtasiga qulay, xavfsiz va maroqli safarlar uyushtiramiz. Har bir mijozga alohida e'tibor va qulay xizmat ko'rsatishni ustuvor vazifamiz deb bilamiz.</p>
@@ -372,7 +374,7 @@
                             </div>
                             {%endfor%}
                         </div>
-                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Barchasini ko'rish</a>
+                        {% comment %} <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Barchasini ko'rish</a> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -383,8 +385,7 @@
         <div class="container-fluid bg-light service py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Searvices</h5>
-                    <h1 class="mb-0">Our Services</h1>
+                    <h5 class="section-title px-3">Xizmatlar</h5>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-6">
@@ -392,7 +393,7 @@
                             <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">WorldWide Tours</h5>
+                                        <h5 class="mb-4">Dunyo bo'ylab sayohat</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -404,7 +405,7 @@
                             <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Hotel Reservation</h5>
+                                        <h5 class="mb-4">SHinam mehmonmonxona</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -416,24 +417,12 @@
                             <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Travel Guides</h5>
+                                        <h5 class="mb-4">Tajribali xodimlar xizmati</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
                                     <div class="service-icon p-4">
                                         <i class="fa fa-user fa-4x text-primary"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
-                                    <div class="service-content text-end">
-                                        <h5 class="mb-4">Event Management</h5>
-                                        <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
-                                        </p>
-                                    </div>
-                                    <div class="service-icon p-4">
-                                        <i class="fa fa-cog fa-4x text-primary"></i>
                                     </div>
                                 </div>
                             </div>
@@ -447,7 +436,7 @@
                                         <i class="fa fa-globe fa-4x text-primary"></i>
                                     </div>
                                     <div class="service-content">
-                                        <h5 class="mb-4">WorldWide Tours</h5>
+                                        <h5 class="mb-4">Tarixiy manzillar</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -459,7 +448,7 @@
                                         <i class="fa fa-hotel fa-4x text-primary"></i>
                                     </div>
                                     <div class="service-content">
-                                        <h5 class="mb-4">Hotel Reservation</h5>
+                                        <h5 class="mb-4">Ko'ngil ochar</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -471,19 +460,7 @@
                                         <i class="fa fa-user fa-4x text-primary"></i>
                                     </div>
                                     <div class="service-content">
-                                        <h5 class="mb-4">Travel Guides</h5>
-                                        <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
-                                    <div class="service-icon p-4">
-                                        <i class="fa fa-cog fa-4x text-primary"></i>
-                                    </div>
-                                    <div class="service-content">
-                                        <h5 class="mb-4">Event Management</h5>
+                                        <h5 class="mb-4">Gid xizmati</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -492,9 +469,9 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="text-center">
+                        {% comment %} <div class="text-center">
                             <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Service More</a>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -586,19 +563,17 @@
                                 {%for i in destinations2%}
                                 <div class="col-lg-6">
                                     <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
+                                        <img class="img-fluid rounded w-100 fixed-height-image" src="{{i.image}} " alt="{{ i.name }}" height=300px width=150px>
                                         <div class="destination-overlay p-4">
-                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
-                                            <h4 class="text-white mb-2 mt-3"{{i.name}}></h4>
+                                            <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
                                             <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish<i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="{{i.image}}" data-lightbox="destination-{{ forloop.counter }}"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 {%endfor%}
-                                
                             </div>
                         </div>
                         <div id="tab-3" class="tab-pane fade show p-0">
@@ -606,19 +581,17 @@
                                 {%for i in destinations1%}
                                 <div class="col-lg-6">
                                     <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
+                                        <img class="img-fluid rounded w-100 fixed-height-image" src="{{i.image}}" alt="{{ i.name }}">
                                         <div class="destination-overlay p-4">
-                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
-                                            <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
+                                            <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
                                             <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="{{i.image}}" data-lightbox="destination-{{ forloop.counter }}"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
                                         </div>
                                     </div>
                                 </div>
                                 {%endfor%}
-                                
                             </div>
                         </div>
                         <div id="tab-4" class="tab-pane fade show p-0">
@@ -626,14 +599,13 @@
                                 {%for i in destinations4%}
                                 <div class="col-lg-6">
                                     <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
+                                        <img class="img-fluid rounded w-100 fixed-height-image" src="{{i.image}}" alt="{{ i.name }}">
                                         <div class="destination-overlay p-4">
-                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
-                                            <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
+                                            <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
                                             <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="{{i.image}}" data-lightbox="destination-{{ forloop.counter }}"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -645,14 +617,13 @@
                                 {%for i in destinations5%}
                                 <div class="col-lg-6">
                                     <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
+                                        <img class="img-fluid rounded w-100 fixed-height-image" src="{{i.image}}" alt="{{ i.name }}">
                                         <div class="destination-overlay p-4">
-                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
-                                            <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
+                                            <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
                                             <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="{{i.image}}" data-lightbox="destination-{{ forloop.counter }}"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -664,14 +635,13 @@
                                 {%for i in destinations3%}
                                 <div class="col-lg-6">
                                     <div class="destination-img">
-                                        <img class="img-fluid rounded w-100" src="{{i.image}}" alt="">
+                                        <img class="img-fluid rounded w-100 fixed-height-image" src="{{i.image}}" alt="{{ i.name }}">
                                         <div class="destination-overlay p-4">
-                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
-                                            <h4 class="text-white mb-2 mt-3">{{i.name}}</h4>
+                                            <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
                                             <a href="{%url 'destination'%}" class="btn-hover text-white">Barchasini ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
-                                            <a href="{{i.image}}" data-lightbox="destination-5"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
+                                            <a href="{{i.image}}" data-lightbox="destination-{{ forloop.counter }}"><i class="fa fa-plus-square fa-1x btn btn-light btn-lg-square text-primary"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1497,11 +1467,11 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Get In Touch</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <h4 class="mb-4 text-white">Biz haqimiza</h4>
+                            <a href=""><i class="fas fa-home me-2"></i> O'zbekiston, Toshkent</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i>azizbekilyosov1212@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> (+998) 99- 876 54 32</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> (+998) 90- 876 54 32</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -1511,7 +1481,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    {% comment %} <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -1573,7 +1543,7 @@
                                 <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>
@@ -1584,13 +1554,13 @@
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-6 text-center text-md-end mb-md-0">
-                        <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Your Site Name</a>, All right reserved.
+                        <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Dunyo Tour</a>
                     </div>
                     <div class="col-md-6 text-center text-md-start">
                         <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                         <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                         <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="text-white" href="https://htmlcodex.com">HTML Codex</a>
+                        {% comment %} Designed By <a class="text-white" href="https://htmlcodex.com">HTML Codex</a> {% endcomment %}
                     </div>
                 </div>
             </div>

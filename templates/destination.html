@@ -267,11 +267,21 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb" style="background-image: url('{% static "img/gallery-4.jpg" %}'); background-size: cover; background-repeat: no-repeat;">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Turlar</h1>
+                <h3 class="text-white display-3 mb-4">Shahrlar</h1>
                 {% comment %} <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="{%url 'home'%}">Bosh sahifa</a></li>
                     <li class="breadcrumb-item"><a href="#">Turlar</a></li>
                 </ol>     {% endcomment %}
+            </div>
+        </div>
+        <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
+            <div class="container">
+                <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
+                    <form action="{% url 'destination_search' %}" method="GET">
+                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="search" name="qidiruv" id='search' placeholder="Misol: Tokio">
+                        <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Qidiruv</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!-- Header End -->
@@ -319,14 +329,14 @@
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
-                                {% for i in destinations %}
+                                {% for i in shaharlar %}
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination_tour' i.id %}" class="btn-hover text-white">Turlarni ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{ i.image.url }}" data-lightbox="destination-1">
@@ -345,9 +355,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination_tour' i.id %}" class="btn-hover text-white">Turlarni ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{ i.image.url }}" data-lightbox="destination-5">
@@ -366,9 +376,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination_tour' i.id %}" class="btn-hover text-white">Turlarni ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{ i.image.url }}" data-lightbox="destination-5">
@@ -387,9 +397,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination_tour' i.id %}" class="btn-hover text-white">Turlarni ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{ i.image.url }}" data-lightbox="destination-5">
@@ -408,9 +418,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination_tour' i.id %}" class="btn-hover text-white">Turlarni ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{ i.image.url }}" data-lightbox="destination-5">
@@ -429,9 +439,9 @@
                                     <div class="destination-img">
                                         <img class="img-fluid rounded w-100" src="{{ i.image.url }}" alt="" style="height: 250px; object-fit: cover;">
                                         <div class="destination-overlay p-4">
-                                            <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a>
+                                            {% comment %} <a href="#" class="btn btn-primary text-white rounded-pill border py-2 px-3">20 Photos</a> {% endcomment %}
                                             <h4 class="text-white mb-2 mt-3">{{ i.name }}</h4>
-                                            <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                            <a href="{%url 'destination_tour' i.id %}" class="btn-hover text-white">Turlarni ko'rish <i class="fa fa-arrow-right ms-2"></i></a>
                                         </div>
                                         <div class="search-icon">
                                             <a href="{{ i.image.url }}" data-lightbox="destination-6">
@@ -450,7 +460,7 @@
         <!-- Destination End -->
 
         <!-- Subscribe Start -->
-        <div class="container-fluid subscribe py-5">
+        {% comment %} <div class="container-fluid subscribe py-5">
             <div class="container text-center py-5">
                 <div class="mx-auto text-center" style="max-width: 900px;">
                     <h5 class="subscribe-title px-3">Subscribe</h5>
@@ -463,7 +473,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
         <!-- Subscribe End -->
 
         <!-- Footer Start -->
@@ -472,11 +482,11 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Get In Touch</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                            <h4 class="mb-4 text-white">Biz haqimiza</h4>
+                            <a href=""><i class="fas fa-home me-2"></i> O'zbekiston, Toshkent</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i>azizbekilyosov1212@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> (+998) 99- 876 54 32</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> (+998) 90- 876 54 32</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -486,7 +496,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    {% comment %} <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -548,7 +558,7 @@
                                 <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
             </div>
         </div>

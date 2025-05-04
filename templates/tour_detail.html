@@ -194,6 +194,12 @@
             margin-bottom: 10px;
         }
     </style>
+    <style>
+        .ratings .fa {
+            color: gold;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -250,7 +256,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{%url 'home'%}" class="nav-item nav-link active">Bosh sahifa</a>
+                    <a href="{%url 'home'%}" class="nav-item nav-link">Bosh sahifa</a>
                     <a href="{%url 'tours'%}" class="nav-item nav-link">Ekskursiyalar</a>
                     <a href="{%url 'destination'%}" class="nav-item nav-link">Shaharlar</a>
                     <a href="{%url 'countrys'%}" class="nav-item nav-link">Davlatlar</a>
@@ -269,7 +275,7 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb" style="background-image: url('{% static "img/packages-1.jpg" %}'); background-size: cover; background-repeat: no-repeat;">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4">Turlar</h1>
+            {% comment %} <h3 class="text-white display-3 mb-4">Turlar</h1> {% endcomment %}
             {% comment %} <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="{%url 'home'%}">Bosh sahifa</a></li>
                 <li class="breadcrumb-item"><a href="#">Turlar</a></li>
@@ -283,7 +289,7 @@
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8" style="border: 1px solid red;>
                     <!-- Blog Detail Start -->
                     <div class="pb-3">
                         <div class="blog-item">
@@ -304,23 +310,70 @@
                             <p>{{ tour.description|safe }}</p>
                             
                         </div>
+
+                        
                     </div>
+
+                    <div class="mb-5">
+                            {% comment %} <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4> {% endcomment %}
+                            <div class="bg-white" style="padding: 30px;">
+                                <ul class="list-inline m-0">
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        {% comment %} <a class="text-dark" href="#">
+                                            <i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.category.all|join:", " }}
+                                        </a> {% endcomment %}
+                                        {% comment %} <span class="badge badge-primary badge-pill">150</span> {% endcomment %}
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Nomi ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.name }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Narxi ---<i class="fa fa-angle-right text-primary mr-2"></i>${{ tour.price }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Qit'a ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.continent }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Davlat ---<i class="fa fa-angle-right text-primary mr-2"></i>{{tour.countries}}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                            SHahar ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.destinations }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     <!-- Blog Detail End -->
     
                     <!-- Comment List Start -->
                     <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Fikirlar</h4>
+                        {% for i in review %}
                         <div class="media mb-4">
-                            <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                            <div class="tour-ratings text-right my-5">
+                                <div class="ratings" data-rating="{{ i.rating }}">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
                             <div class="media-body">
-                                <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
-                                <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
-                                    accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.
-                                    Gubergren clita aliquyam consetetur sadipscing, at tempor amet ipsum diam tempor
-                                    consetetur at sit.</p>
+                                <h6><a href="">{{i.username}}</a> <small><i>{{i.created_at}}</i></small></h6>
+                                <p>{{i.comment}}</p>
                                 <button class="btn btn-sm btn-outline-primary">Reply</button>
                             </div>
                         </div>
+                        {%endfor%}
                         {% comment %} <div class="media">
                             <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                             <div class="media-body">
@@ -350,148 +403,152 @@
                     <!-- Comment Form Start -->
                     <div class="bg-white mb-3" style="padding: 30px;">
                         <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Fikir qoldirish</h4>
-                        <form>
+                        <form method='POST' action="{% url 'review_create' tour.id %}">
+                            {%csrf_token%}
                             <div class="form-group">
-                                <label for="name">Name *</label>
-                                <input type="text" class="form-control" id="name">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" value="{{ user.username }}">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" class="form-control" id="email">
+                                <label for="email">Elektron pochta manzili</label>
+                                <input type="email" class="form-control" id="email" value="{{ user.email }}" >
                             </div>
                             <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
+                                <label for="rating">Reyting</label>
+                                <input type="number" name="rating" class="form-control" id="rating" min="1" max="5">
+                                <small class="form-text text-muted">Iltimos, 1 dan 5 gacha reyting bering.</small>
                             </div>
     
                             <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                <label for="message">Xabar</label>
+                                <textarea id="message" name="comment" cols="30" rows="5" class="form-control"></textarea>
                             </div>
                             <div class="form-group mb-0">
-                                <input type="submit" value="Leave a comment"
+                                <input type="submit" value="Yuborish"
                                     class="btn btn-primary font-weight-semi-bold py-2 px-3">
                             </div>
                         </form>
                     </div>
                     <!-- Comment Form End -->
                 </div>
-                <div class="col-lg-4 mt-5 mt-lg-0">
-                    <!-- Author Bio -->
-                    {% comment %} <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
-                        <img src="img/user.jpg" class="img-fluid mx-auto mb-3" style="width: 100px;">
-                        <h3 class="text-primary mb-3">John Doe</h3>
-                        <p>Conset elitr erat vero dolor ipsum et diam, eos dolor lorem, ipsum sit no ut est  ipsum erat kasd amet elitr</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="text-primary px-2" href="">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="text-primary px-2" href="">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="text-primary px-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a class="text-primary px-2" href="">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a class="text-primary px-2" href="">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div> {% endcomment %}
-    
-                    <!-- Search Form -->
-                    {% comment %} <div class="mb-5">
-                        <div class="bg-white" style="padding: 30px;">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-4" placeholder="Keyword">
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-primary border-primary text-white"><i
-                                            class="fa fa-search"></i></span>
+                <div class="col-lg-4 order-lg-first" style="border: 1px solid blue;>
+                    <div class="d-flex flex-column align-items-start">
+                        <!-- Author Bio -->
+                        {% comment %} <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
+                            <img src="img/user.jpg" class="img-fluid mx-auto mb-3" style="width: 100px;">
+                            <h3 class="text-primary mb-3">John Doe</h3>
+                            <p>Conset elitr erat vero dolor ipsum et diam, eos dolor lorem, ipsum sit no ut est  ipsum erat kasd amet elitr</p>
+                            <div class="d-flex justify-content-center">
+                                <a class="text-primary px-2" href="">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="text-primary px-2" href="">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="text-primary px-2" href="">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a class="text-primary px-2" href="">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a class="text-primary px-2" href="">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div> {% endcomment %}
+        
+                        <!-- Search Form -->
+                        {% comment %} <div class="mb-5">
+                            <div class="bg-white" style="padding: 30px;">
+                                <div class="input-group">
+                                    <input type="text" class="form-control p-4" placeholder="Keyword">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-primary border-primary text-white"><i
+                                                class="fa fa-search"></i></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> {% endcomment %}
+                        </div> {% endcomment %}
 
-                    <!-- Category List -->
-                    <div class="mb-5">
-                        {% comment %} <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4> {% endcomment %}
-                        <div class="bg-white" style="padding: 30px;">
-                            <ul class="list-inline m-0">
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    {% comment %} <a class="text-dark" href="#">
-                                        <i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.category.all|join:", " }}
-                                    </a> {% endcomment %}
-                                    {% comment %} <span class="badge badge-primary badge-pill">150</span> {% endcomment %}
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#">
-                                    Nomi ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.name }}
-                                    </a>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#">
-                                    Narxi ---<i class="fa fa-angle-right text-primary mr-2"></i>${{ tour.price }}
-                                    </a>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#">
-                                    Qit'a ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.continent }}
-                                    </a>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#">
-                                    Davlat ---<i class="fa fa-angle-right text-primary mr-2"></i>{{tour.countries}}
-                                    </a>
-                                </li>
-                                <li class="mb-3 d-flex justify-content-between align-items-center">
-                                    <a class="text-dark" href="#">
-                                        SHahar ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.destinations }}
-                                    </a>
-                                </li>
-                            </ul>
+                        <!-- Category List -->
+                        <div class="mb-5">
+                            {% comment %} <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Categories</h4> {% endcomment %}
+                            <div class="bg-white" style="padding: 30px;">
+                                <ul class="list-inline m-0">
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        {% comment %} <a class="text-dark" href="#">
+                                            <i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.category.all|join:", " }}
+                                        </a> {% endcomment %}
+                                        {% comment %} <span class="badge badge-primary badge-pill">150</span> {% endcomment %}
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Nomi ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.name }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Narxi ---<i class="fa fa-angle-right text-primary mr-2"></i>${{ tour.price }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Qit'a ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.continent }}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                        Davlat ---<i class="fa fa-angle-right text-primary mr-2"></i>{{tour.countries}}
+                                        </a>
+                                    </li>
+                                    <li class="mb-3 d-flex justify-content-between align-items-center">
+                                        <a class="text-dark" href="#">
+                                            SHahar ---<i class="fa fa-angle-right text-primary mr-2"></i>{{ tour.destinations }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>                    
+        
+                        {% comment %} <!-- Recent Post -->
+                        <div class="mb-5">
+                            <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
+                            <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
+                                <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
+                                <div class="pl-3">
+                                    <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
+                                    <small>Jan 01, 2050</small>
+                                </div>
+                            </a>
+                            <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
+                                <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
+                                <div class="pl-3">
+                                    <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
+                                    <small>Jan 01, 2050</small>
+                                </div>
+                            </a>
+                            <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
+                                <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
+                                <div class="pl-3">
+                                    <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
+                                    <small>Jan 01, 2050</small>
+                                </div>
+                            </a>
                         </div>
-                    </div>                    
-    
-                    {% comment %} <!-- Recent Post -->
-                    <div class="mb-5">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
+        
+                        <!-- Tag Cloud -->
+                        <div class="mb-5">
+                            <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
+                            <div class="d-flex flex-wrap m-n1">
+                                <a href="" class="btn btn-light m-1">Design</a>
+                                <a href="" class="btn btn-light m-1">Development</a>
+                                <a href="" class="btn btn-light m-1">Marketing</a>
+                                <a href="" class="btn btn-light m-1">SEO</a>
+                                <a href="" class="btn btn-light m-1">Writing</a>
+                                <a href="" class="btn btn-light m-1">Consulting</a>
                             </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
-                        <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="">
-                            <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
-                            <div class="pl-3">
-                                <h6 class="m-1">Diam lorem dolore justo eirmod lorem dolore</h6>
-                                <small>Jan 01, 2050</small>
-                            </div>
-                        </a>
+                        </div> {% endcomment %}
                     </div>
-    
-                    <!-- Tag Cloud -->
-                    <div class="mb-5">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Tag Cloud</h4>
-                        <div class="d-flex flex-wrap m-n1">
-                            <a href="" class="btn btn-light m-1">Design</a>
-                            <a href="" class="btn btn-light m-1">Development</a>
-                            <a href="" class="btn btn-light m-1">Marketing</a>
-                            <a href="" class="btn btn-light m-1">SEO</a>
-                            <a href="" class="btn btn-light m-1">Writing</a>
-                            <a href="" class="btn btn-light m-1">Consulting</a>
-                        </div>
-                    </div> {% endcomment %}
                 </div>
             </div>
         </div>
@@ -500,71 +557,88 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">TRAVEL</span>ER</h1>
-                </a>
-                <p>Sed ipsum clita tempor ipsum ipsum amet sit ipsum lorem amet labore rebum lorem ipsum dolor. No sed vero lorem dolor dolor</p>
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Follow Us</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Usefull Links</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contact Us</h5>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Newsletter</h6>
-                <div class="w-100">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 25px;" placeholder="Your Email">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-3">Sign Up</button>
+    <div class="container-fluid footer py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Biz haqimiza</h4>
+                        <a href=""><i class="fas fa-home me-2"></i> O'zbekiston, Toshkent</a>
+                        <a href=""><i class="fas fa-envelope me-2"></i>azizbekilyosov1212@gmail.com</a>
+                        <a href=""><i class="fas fa-phone me-2"></i> (+998) 99- 876 54 32</a>
+                        <a href="" class="mb-3"><i class="fas fa-print me-2"></i> (+998) 90- 876 54 32</a>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-share fa-2x text-white me-2"></i>
+                            <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="row">
-            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white-50">Copyright &copy; <a href="#">Domain</a>. All Rights Reserved.</a>
-                </p>
-            </div>
-            <div class="col-lg-6 text-center text-md-right">
-                <p class="m-0 text-white-50">Designed by <a href="https://htmlcodex.com">HTML Codex</a>
-                </p>
+                {% comment %} <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Company</h4>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Careers</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Blog</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Press</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Gift Cards</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Magazine</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item d-flex flex-column">
+                        <h4 class="mb-4 text-white">Support</h4>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Legal Notice</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
+                        <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="footer-item">
+                        <div class="row gy-3 gx-2 mb-4">
+                            <div class="col-xl-6">
+                                <form>
+                                    <div class="form-floating">
+                                        <select class="form-select bg-dark border" id="select1">
+                                            <option value="1">Arabic</option>
+                                            <option value="2">German</option>
+                                            <option value="3">Greek</option>
+                                            <option value="3">New York</option>
+                                        </select>
+                                        <label for="select1">English</label>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-xl-6">
+                                <form>
+                                    <div class="form-floating">
+                                        <select class="form-select bg-dark border" id="select1">
+                                            <option value="1">USD</option>
+                                            <option value="2">EUR</option>
+                                            <option value="3">INR</option>
+                                            <option value="3">GBP</option>
+                                        </select>
+                                        <label for="select1">$</label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <h4 class="text-white mb-3">Payments</h4>
+                        <div class="footer-bank-card">
+                            <a href="#" class="text-white me-2"><i class="fab fa-cc-amex fa-2x"></i></a>
+                            <a href="#" class="text-white me-2"><i class="fab fa-cc-visa fa-2x"></i></a>
+                            <a href="#" class="text-white me-2"><i class="fas fa-credit-card fa-2x"></i></a>
+                            <a href="#" class="text-white me-2"><i class="fab fa-cc-mastercard fa-2x"></i></a>
+                            <a href="#" class="text-white me-2"><i class="fab fa-cc-paypal fa-2x"></i></a>
+                            <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </div>
@@ -712,6 +786,33 @@
                 console.error('Tarmoq xatoligi:', error);
                 alert('Tarmoq xatoligi yuz berdi.');
             });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function setStarRating(element, rating) {
+                const stars = element.getElementsByClassName('fa');
+                for (let i = 0; i < stars.length; i++) {
+                    if (rating >= i + 1) {
+                        stars[i].classList.remove('fa-star-o');
+                        stars[i].classList.add('fa-star');
+                    } else if (rating > i && rating < i + 1) {
+                        stars[i].classList.remove('fa-star-o');
+                        stars[i].classList.add('fa-star-half-o');
+                    } else {
+                        stars[i].classList.remove('fa-star');
+                        stars[i].classList.remove('fa-star-half-o');
+                        stars[i].classList.add('fa-star-o');
+                    }
+                }
+            }
+
+            const ratingElements = document.getElementsByClassName('ratings');
+            for (let i = 0; i < ratingElements.length; i++) {
+                const ratingElement = ratingElements[i];
+                const rating = parseFloat(ratingElement.getAttribute('data-rating'));
+                setStarRating(ratingElement, rating);
+            }
         });
     </script>
 </body>
