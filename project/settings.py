@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TELEGRAM_BOT_TOKEN = '7755241531:AAEnooSVLOdcWu1o4fQlli046ZQEL_ZyyPU'
 
 # Application definition
 
@@ -43,7 +44,11 @@ INSTALLED_APPS = [
     'apps.tour' ,
     'apps.accounts' ,
     'apps.order' , 
+    'phonenumber_field',
+    'crispy_forms',
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"  # Yoki ["bootstrap5"]
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 
+from apps.order.forms import OrderForm
 from apps.order.models import Review
 from apps.tour.models import Advantages, Country, Destination, Gallery, Tour
 
@@ -68,7 +69,14 @@ def country_view(request):
 def tour_detail_view(request, pk):
     tour = Tour.objects.get(id=pk)
     review = Review.objects.all()
-    return render(request, 'tour_detail.html', {'tour':tour, 'review':review})
+    order_form = OrderForm()  # Buyurtma formasini yaratish
+
+    context = {
+        'tour': tour,
+        'review': review,
+        'form': order_form,  # Formani kontekstga qo'shish
+    }
+    return render(request, 'tour_detail.html', context)
 
 
 def destination_view(request, pk):
